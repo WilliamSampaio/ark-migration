@@ -1,0 +1,19 @@
+{
+    "name": "williamsampaio/ark-migration",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Williamsampaio\\ArkMigration\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "William Sampaio",
+            "email": "56176702+WilliamSampaio@users.noreply.github.com",
+            "homepage": "https://github.com/WilliamSampaio",
+            "role": "Lead Developer"
+        }
+    ],
+    "require": {}
+}

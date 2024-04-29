@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+
+  php56:
+    container_name: php56
+    build:
+      context: .
+      dockerfile: Dockerfile.php
+    restart: always
+    volumes:
+      - .:/src
+    links:
+      - postgres9
+    environment:
+      - TESTS_DB_ADAPTER_POSTGRES_HOST=postgres9
+
+  postgres9:
+    container_name: postgres9
+    image: postgres:9.4
+    restart: always
+    environment:
+        - POSTGRES_DB=ark
+        - POSTGRES_PASSWORD=ark123
+    ports:
+      - 6543:5432
