@@ -1,6 +1,14 @@
 {
     "name": "williamsampaio/ark-migration",
     "type": "library",
+    "keywords": [
+        "ark",
+        "migrations",
+        "database",
+        "db",
+        "database migrations"
+    ],
+    "homepage": "https://github.com/WilliamSampaio/ark-migration",
     "license": "MIT",
     "autoload": {
         "psr-4": {
@@ -15,5 +23,12 @@
             "role": "Lead Developer"
         }
     ],
-    "require": {}
+    "require": {
+        "php-64bit": ">=5.6"
+    },
+    "require-dev": {
+        "ext-json": "*",
+        "ext-pdo": "*",
+        "symfony/yaml": "^3.4|^4.0|^5.0|^6.0|^7.0"
+    }
 }
