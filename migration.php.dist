@@ -1,0 +1,7 @@
+<?php
+
+// Array with the SQL queries to upgrade database.
+$UP = array();
+
+// Array with the SQL queries to downgrade database.
+$DOWN = array();

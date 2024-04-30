@@ -4,21 +4,17 @@ namespace Williamsampaio\ArkMigration\Commands;
 
 use InvalidArgumentException;
 use RuntimeException;
-use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class Init extends Command
+class Init extends AbstractCommand
 {
-    protected static $FILE_NAME = 'arkconfig';
     protected static $defaultName = 'init';
 
     protected function configure()
     {
         $this
             ->setDescription("Initialize the migrations")
-            ->addArgument('path', InputArgument::OPTIONAL, 'Path to initialize migrations')
             ->setHelp(sprintf(
                 "%sInitializes the migrations%s",
                 PHP_EOL,
@@ -28,43 +24,18 @@ class Init extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $path = $this->resolvePath($input);
-        $this->writeConfig($path);
-
-        $output->writeln("<info>created</info> {$path}");
-
-        return 0;
-    }
-
-    protected function resolvePath(InputInterface $input)
-    {
-        $path = (string) $input->getArgument('path');
-
-        if (!$path) {
-            $path = getcwd() . DIRECTORY_SEPARATOR . self::$FILE_NAME . '.php';
-        }
-
-        if (is_dir($path)) {
-            $path .= DIRECTORY_SEPARATOR . self::$FILE_NAME . '.php';
-        }
-
-        $dirname = dirname($path);
-        if (is_dir($dirname) && !is_file($path)) {
-            return $path;
-        }
-
-        if (is_file($path)) {
+        if (file_exists(self::CONFIG_FILE_PATH)) {
             throw new InvalidArgumentException(sprintf(
                 'Config file "%s" already exists!',
-                $path
+                self::CONFIG_FILE_PATH
             ));
         }
 
-        // Dir is invalid
-        throw new InvalidArgumentException(sprintf(
-            'Invalid path "%s" for config file!',
-            $path
-        ));
+        $this->writeConfig(self::CONFIG_FILE_PATH);
+
+        $output->writeln(sprintf("<info>created</info> %s", self::CONFIG_FILE_PATH));
+
+        return self::CODE_SUCCESS;
     }
 
     protected function writeConfig($path)
@@ -79,7 +50,7 @@ class Init extends Command
         }
 
         // load the config template
-        $filename = __DIR__ . '/../../' . self::$FILE_NAME . '.php.dist';
+        $filename = self::CONFIG_TEMPLATE_FILE_PATH;
         if (file_exists($filename)) {
             $contents = file_get_contents($filename);
         } else {

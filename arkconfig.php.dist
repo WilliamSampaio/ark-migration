@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'paths' => 'db/migrations',
+    'path' => 'db/migrations',
     'environments' => [
         'default_migration_table' => '_arkmigration',
         'default_environment' => 'development',

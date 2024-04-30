@@ -19,10 +19,12 @@ if (!$autoload()) {
 }
 
 use Symfony\Component\Console\Application;
+use Williamsampaio\ArkMigration\Commands\Create;
 use Williamsampaio\ArkMigration\Commands\Init;
 
 $application = new Application();
 
 $application->add(new Init());
+$application->add(new Create());
 
 $application->run();
