@@ -7,7 +7,7 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class HelloWorldCommand extends Command
+class HelloWorld extends Command
 {
     // the name of the command (the part after "bin/console")
     protected static $defaultName = 'hello';
@@ -15,7 +15,7 @@ class HelloWorldCommand extends Command
     protected function configure()
     {
         $this
-            ->setDescription("Hello World!")
+            ->setDescription("Test!")
             ->setHelp("Hello World...")
             ->addArgument('name', InputArgument::OPTIONAL, 'Seu nome!')
             ->addArgument('sobrenome', InputArgument::OPTIONAL, 'Seu sobrenome!');

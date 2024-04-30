@@ -1,0 +1,39 @@
+<?php
+
+return [
+    'paths' => 'db/migrations',
+    'environments' => [
+        'default_migration_table' => '_arkmigration',
+        'default_environment' => 'development',
+        'production' => [
+            'host' => 'localhost',
+            'name' => 'production_db',
+            'schema' => 'public',
+            'user' => 'root',
+            'pass' => '',
+            'port' => '5432',
+            'attr_default_fetch_mode' => PDO::FETCH_ASSOC,
+            'charset' => 'utf8'
+        ],
+        'development' => [
+            'host' => 'localhost',
+            'name' => 'development_db',
+            'schema' => 'public',
+            'user' => 'root',
+            'pass' => '',
+            'port' => '5432',
+            'attr_default_fetch_mode' => PDO::FETCH_ASSOC,
+            'charset' => 'utf8'
+        ],
+        'testing' => [
+            'host' => 'localhost',
+            'name' => 'testing_db',
+            'schema' => 'public',
+            'user' => 'root',
+            'pass' => '',
+            'port' => '5432',
+            'attr_default_fetch_mode' => PDO::FETCH_ASSOC,
+            'charset' => 'utf8'
+        ]
+    ]
+];

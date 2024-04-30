@@ -2,7 +2,7 @@
 
 $autoload = function () {
     $files = [
-      __DIR__ . '/../vendor/autoload.php'
+        __DIR__ . '/../vendor/autoload.php'
     ];
     foreach ($files as $file) {
         if (is_file($file)) {
@@ -14,15 +14,15 @@ $autoload = function () {
     return false;
 };
 
-if(!$autoload()){
+if (!$autoload()) {
     die('Composer is required!');
 }
 
 use Symfony\Component\Console\Application;
-use Williamsampaio\ArkMigration\HelloWorldCommand;
+use Williamsampaio\ArkMigration\Commands\Init;
 
 $application = new Application();
 
-$application->add(new HelloWorldCommand());
+$application->add(new Init());
 
 $application->run();
