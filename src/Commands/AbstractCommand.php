@@ -31,7 +31,10 @@ abstract class AbstractCommand extends Command
     private function loadConfig()
     {
         if (!file_exists(self::CONFIG_FILE_PATH)) {
-            return null;
+            throw new RuntimeException(sprintf(
+                'Config file not set yet! Run init command.',
+                self::CONFIG_FILE_PATH
+            ));
         }
 
         ob_start();

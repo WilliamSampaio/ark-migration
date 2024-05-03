@@ -36,13 +36,6 @@ EOT
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        if (is_null($this->getConfig())) {
-            throw new RuntimeException(sprintf(
-                'Config file not set yet! Run init command.',
-                self::CONFIG_FILE_PATH
-            ));
-        }
-
         $version = $input->getOption('target');
         $environment = $input->getOption('environment');
 

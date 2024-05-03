@@ -38,13 +38,6 @@ class Create extends AbstractCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        if (is_null($this->getConfig())) {
-            throw new RuntimeException(sprintf(
-                'Config file not set yet! Run init command.',
-                self::CONFIG_FILE_PATH
-            ));
-        }
-
         $path = $this->getConfig()['path'];
 
         if (!file_exists($path)) {
