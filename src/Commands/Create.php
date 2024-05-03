@@ -13,11 +13,9 @@ use Williamsampaio\ArkMigration\Util;
 class Create extends AbstractCommand
 {
     protected static $defaultName = 'create';
-    protected static $config = null;
 
     public function __construct()
     {
-        $this->config = self::loadConfig();
         parent::__construct();
     }
 
@@ -40,14 +38,14 @@ class Create extends AbstractCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        if (is_null($this->config)) {
+        if (is_null($this->getConfig())) {
             throw new RuntimeException(sprintf(
                 'Config file not set yet! Run init command.',
                 self::CONFIG_FILE_PATH
             ));
         }
 
-        $path = $this->config['path'];
+        $path = $this->getConfig()['path'];
 
         if (!file_exists($path)) {
             $helper = $this->getHelper('question');

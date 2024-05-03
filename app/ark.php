@@ -21,10 +21,12 @@ if (!$autoload()) {
 use Symfony\Component\Console\Application;
 use Williamsampaio\ArkMigration\Commands\Create;
 use Williamsampaio\ArkMigration\Commands\Init;
+use Williamsampaio\ArkMigration\Commands\Migrate;
 
 $application = new Application();
 
 $application->add(new Init());
 $application->add(new Create());
+$application->add(new Migrate());
 
 $application->run();

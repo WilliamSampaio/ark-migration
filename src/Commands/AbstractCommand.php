@@ -17,7 +17,18 @@ abstract class AbstractCommand extends Command
     const CODE_SUCCESS = 0;
     const CODE_ERROR = 1;
 
-    protected function loadConfig()
+    protected $config = null;
+
+    protected function getConfig()
+    {
+        if ($this->config == null) {
+            $this->loadConfig();
+        }
+
+        return $this->config;
+    }
+
+    private function loadConfig()
     {
         if (!file_exists(self::CONFIG_FILE_PATH)) {
             return null;
@@ -37,6 +48,6 @@ abstract class AbstractCommand extends Command
             ));
         }
 
-        return $configArray;
+        $this->config = $configArray;
     }
 }
